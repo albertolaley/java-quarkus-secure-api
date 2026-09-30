@@ -10,28 +10,6 @@
         "name": "admin"
       }
     ]
-        {
-          "clientId": "api-test-client",
-          "enabled": true,
-          "protocol": "openid-connect",
-          "publicClient": true,
-          "standardFlowEnabled": false,
-          "directAccessGrantsEnabled": true,
-          "serviceAccountsEnabled": false,
-          "protocolMappers": [
-            {
-              "name": "backend-api audience",
-              "protocol": "openid-connect",
-              "protocolMapper": "oidc-audience-mapper",
-              "consentRequired": false,
-              "config": {
-                "included.client.audience": "backend-api",
-                "id.token.claim": "false",
-                "access.token.claim": "true"
-              }
-            }
-          ]
-        },
   },
   "users": [
     {
@@ -74,6 +52,28 @@
   ],
   "clients": [
     {
+      "clientId": "api-test-client",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "protocolMappers": [
+        {
+          "name": "backend-api audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.client.audience": "backend-api",
+            "id.token.claim": "false",
+            "access.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
       "clientId": "backend-api",
       "name": "Backend API",
       "enabled": true,
@@ -95,7 +95,7 @@
       "implicitFlowEnabled": false,
       "directAccessGrantsEnabled": false,
       "serviceAccountsEnabled": false,
-      "fullScopeAllowed": false,
+      "fullScopeAllowed": true,
       "redirectUris": [
         "http://localhost:8000/*"
       ],
@@ -115,6 +115,20 @@
             "included.client.audience": "backend-api",
             "id.token.claim": "false",
             "access.token.claim": "true"
+          }
+        },
+        {
+          "name": "realm roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "multivalued": "true",
+            "userinfo.token.claim": "false",
+            "id.token.claim": "false",
+            "access.token.claim": "true",
+            "claim.name": "realm_access.roles",
+            "jsonType.label": "String"
           }
         }
       ]
