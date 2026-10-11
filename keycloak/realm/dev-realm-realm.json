@@ -1,6 +1,8 @@
 {
   "realm": "dev-realm",
   "enabled": true,
+  "bruteForceProtected": true,
+  "failureFactor": 5,
   "roles": {
     "realm": [
       {
@@ -93,7 +95,7 @@
       "publicClient": true,
       "standardFlowEnabled": true,
       "implicitFlowEnabled": false,
-      "directAccessGrantsEnabled": false,
+      "directAccessGrantsEnabled": true,
       "serviceAccountsEnabled": false,
       "fullScopeAllowed": true,
       "redirectUris": [
